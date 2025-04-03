@@ -1,9 +1,8 @@
 <?php
 
 include '../includes/db.php';
-include '../includes/headerAdmin.php';
+include '../damnificados/headerDamni.php';
 
-echo "<h1>Panel de Administración</h1>";
 include '../includes/footer.php';
 ?> 
 

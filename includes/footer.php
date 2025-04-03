@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="css/footer.css">
-<script src="https://cdn.tailwindcss.com"></script>
 
 
 

@@ -1,26 +1,49 @@
 <?php
-
-// include "includes/header.php";
 include "includes/db.php";
+session_start();
 
-// 5. /login.php (Inicio de sesión)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
- $email = $_POST['email'];
- $password = $_POST['password'];
- $query = $conexion->prepare("SELECT * FROM usuarios
-WHERE email = ? AND password = ?");
- $query->bind_param("ss", $email, $password);
- $query->execute();
- $resultado = $query->get_result();
- if ($resultado->num_rows > 0) {
- session_start();
- $_SESSION['usuario'] = $resultado->fetch_assoc();
- header("Location: index.php");
- } else {
- echo "Credenciales incorrectas";
- }
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Buscar usuario por email
+    $query = $conexion->prepare("SELECT * FROM usuarios WHERE email = ?");
+    $query->bind_param("s", $email);
+    $query->execute();
+    $resultado = $query->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $usuario = $resultado->fetch_assoc();
+
+        // Comprobar contraseña (si la guardaste con password_hash)
+        if (password_verify($password, $usuario['password'])) {
+            // Guardar datos en la sesión
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['rol'] = $usuario['rol'];
+            $_SESSION['nombre'] = $usuario['nombre']; // ✅ Añadido: guardar el nombre
+
+            // Redirigir según el rol
+            switch ($_SESSION['rol']) {
+                case 'administrador':
+                    header("Location: admin/indexAdmin.php");
+                    break;
+                case 'cliente':
+                    header("Location: /teleDANA3/damnificados/indexDamni.php");
+                    break;
+                case 'voluntario':
+                    header("Location: voluntario/indexVoluntario.php");
+                    break;
+                default:
+                    echo "Rol desconocido.";
+            }
+            exit();
+        } else {
+            echo "Contraseña incorrecta.";
+        }
+    } else {
+        echo "Correo no registrado.";
+    }
 }
-// include "includes/footer.php";
 ?>
 
 <!DOCTYPE html>
@@ -37,17 +60,14 @@ WHERE email = ? AND password = ?");
         <form class="login-form" method="POST">
             <h2>Iniciar Sesión</h2>
 
-
-
             <div class="form-group">
                 <i class="fas fa-user icon"></i>
-                <input type="email" name="email" required>
-
+                <input type="email" name="email" required placeholder="Correo electrónico">
             </div>
 
             <div class="form-group password-group">
                 <i class="fas fa-lock icon"></i>
-                <input type="password" name="password" required>
+                <input type="password" name="password" required placeholder="Contraseña">
                 <i class="toggle-password" id="togglePassword"></i>
             </div>
 
@@ -63,17 +83,3 @@ WHERE email = ? AND password = ?");
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-<!-- <form method="POST">
- <input type="email" name="email" required>
- <input type="password" name="password" required>
- <button type="submit">Iniciar Sesión</button>
-</form>  -->

@@ -1,21 +1,24 @@
 <?php
 include 'includes/db.php';
-// 6. /registro.php (Registro de usuarios)
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
- $nombre = $_POST['nombre'];
- $email = $_POST['email'];
- $password = $_POST['password'];
- $query = $conexion->prepare("INSERT INTO usuarios
-(nombre, email, password, rol) VALUES (?, ?, ?,
-'cliente')");
- $query->bind_param("sss", $nombre, $email, $password);
- if ($query->execute()) {
- header("Location: login.php");
- } else {
- echo "Error al registrar";
- }
+    $nombre = $_POST['nombre'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Recomendado
+    $rol = $_POST['rol'];
+
+    $query = $conexion->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)");
+    $query->bind_param("ssss", $nombre, $email, $password, $rol);
+
+    if ($query->execute()) {
+        header("Location: login.php");
+        exit();
+    } else {
+        echo "Error al registrar: " . $conexion->error;
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -23,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
-    <!-- Cargar Font Awesome desde CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/registro.css">
 </head>
@@ -48,6 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <i class="fas fa-lock icon"></i>
                 <input type="password" name="password" required>
                 <i class="toggle-password" id="togglePassword"></i>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user icon"></i>
+                <select class="form-group" type="rol" name="rol" required>
+                    <option value="voluntario">Voluntario</option>
+                    <option value="cliente">Damnificado</option>
+                </select>
             </div>                              
             
             <button type="submit" class="btn">Registrarse</button>

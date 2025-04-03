@@ -1,32 +1,41 @@
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title class="font-mono font-semibold">Inicio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black-600 p-6">
+
+
 <?php
-// 4. /index.php (Página principal de la tienda)
-include 'includes/headerBase.php';
+include 'includes/headerBase.php';  // Aquí debe estar el <head> y abrir <body>
 include 'includes/db.php';
-$resultado = $conexion->query("SELECT * FROM productos");
+
+// // Mostrar productos
+// $resultado = $conexion->query("SELECT * FROM productos");
 // while ($producto = $resultado->fetch_assoc()) {
-//  echo "<div><h2>" . $producto['nombre'] .
-// "</h2><p>Precio: " . $producto['precio_tonkens'] . "
-// Tonkens</p></div>";
+//     echo "<div><h2>" . $producto['nombre'] . "</h2><p>Precio: " . $producto['precio_tonkens'] . " Tonkens</p></div>";
 // }
-include 'includes/footer.php';
-// include 'productos/index2.php';
+
+
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-</head>
-<body>
-    <!-- <?php
-    include 'quienes_somos.php';
-    ?> -->
-    
+
+
+
+
+
+
+
 </body>
+<!-- <?php
+include 'includes/footer.php'; // Aquí debe cerrar el </body> y </html>
+?> -->
+
+
 </html>
-
-
