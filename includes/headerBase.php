@@ -1,7 +1,7 @@
 
   <ul class="flex bg-gray-500 shadow-md rounded-lg p-4 space-x-4">
     <li>
-      <a href="#" class="flex items-center space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2"
+      <a href="#" class="flex items-center space-x-2 text-gray-700 hover:bg-orange-400 rounded-lg p-2"
         onclick="cargarPagina('/teleDANA3/indexBase.php')">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2
@@ -13,7 +13,7 @@
       </a>
     </li>
     <li>
-      <a class="flex items-center space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2"
+      <a class="flex items-center space-x-2 text-gray-700 hover:bg-orange-400 rounded-lg p-2"
         onclick="cargarPagina('/teleDANA3/quienes_somos.php')">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path fill="currentColor"
@@ -25,11 +25,11 @@
 
   <!-- Logo centrado -->
   <li class="flex-grow text-center">
-    <img src="/teleDANA3/imagenes/logo3.png" alt="Logo" class="h-12 mx-auto">
+    <img src="/teleDANA3/imagenes/logo5.png" alt="Logo" class="h-14 mx-auto">
   </li>
 
     <li>
-      <a  href="/teleDANA3/login.php" class="flex items-center ml-2 space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2">
+      <a  href="/teleDANA3/login.php" class="flex items-center ml-2 space-x-2 text-gray-700 hover:bg-orange-400 rounded-lg p-2">
         <!-- onclick="cargarPagina('/teleDANA3/login.php')" -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path fill="currentColor"
@@ -41,7 +41,7 @@
     </li>
 
     <li>
-      <a href="#" class="flex items-center ml-2 space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2"
+      <a href="#" class="flex items-center ml-2 space-x-2 text-gray-700 hover:bg-orange-400 rounded-lg p-2"
         onclick="cargarPagina('/teleDANA3/registro.php')">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5.8 10C5.4 8.8 4.3 8 3 8c-1.7 0-3 1.3-3 3s1.3 3 3 3c1.3 0 2.4-.8 2.8-2H7v2h2v-2h2v-2zM3 12c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1m13-8c-2.2 0-4 1.8-4 4s1.8 4 4 4s4-1.8 4-4s-1.8-4-4-4m0 6.1c-1.2 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1s2.1.9 2.1 2.1s-.9 2.1-2.1 2.1m0 2.9c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4m6.1 5.1H9.9V17c0-.6 3.1-2.1 6.1-2.1s6.1 1.5 6.1 2.1z"/></svg>
                 <span class="font-mono font-semibold">Registrarse</span>

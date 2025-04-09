@@ -14,10 +14,12 @@ include '../includes/footer.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Panel Administracion</title>
 </head>
 <body>
-
+<?php 
+include '/cardsPanelAdmin.php';
+?>
     
 </body>
 </html>

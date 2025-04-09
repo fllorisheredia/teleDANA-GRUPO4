@@ -1,18 +1,16 @@
 <?php
 include '../includes/db.php';
-include '../includes/headerAdmin.php';
+// include '../includes/headerAdmin.php';
 
 // Obtener los usuarios
 $sql = "SELECT * FROM productos ORDER BY id DESC";
 $result = $conexion->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Usuarios</title>
+    <title>Lista de Productos</title>
     <link rel="stylesheet" href="css/agregarProductos.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -51,37 +49,7 @@ $result = $conexion->query($sql);
                                 class="text-blue-600 hover:underline focus:outline-none">
                                 Acciones
                             </button>
-<!-- 
-                            Menú centrado en pantalla (por cada usuario)
-                            <div id="menu-<?php echo $row['id']; ?>"
-                                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-                                <div class="bg-white rounded-lg shadow-lg w-80 max-w-full p-6 space-y-3">
-                                    <h2 class="text-lg font-semibold text-gray-800">Opciones de usuario</h2>
-                                    <a href="detalle.php?id=<?php echo $row['id']; ?>"
-                                        class="block text-blue-600 hover:underline">Ver detalles</a>
-                                    <a href="añadirTokens.php?id=<?php echo $row['id']; ?>"
-                                        class="block text-blue-600 hover:underline">Añadir tokens
-                                       
-
-                                    </a>
-
-                                    <input type="text" placeholder="Type here" class="input" />
-                                    <a href="cambiarContrasena.php?id=<?php echo $row['id']; ?>"
-                                        class="block text-blue-600 hover:underline">Cambiar contraseña</a>
-                                    <a href="eliminarUsuario.php?id=<?php echo $row['id']; ?>"
-                                        class="block text-red-600 hover:underline">Eliminar usuario</a>
-                                    <button onclick="toggleMenu(<?php echo $row['id']; ?>)"
-                                        class="w-full mt-4 bg-gray-200 hover:bg-gray-300 text-gray-800 py-1.5 rounded">
-                                        Cerrar
-                                    </button>
-                                </div>
-                            </div> -->
-
-                   
-
-
-
-
+8
 
                         </td>
 
@@ -91,9 +59,9 @@ $result = $conexion->query($sql);
             </tbody>
         </table>
         <!-- Menú centrado en pantalla -->
-        <div id="menu-<?php echo $row['id']; ?>"
+        <!-- <div id="menu-<?php echo $row['id']; ?>"
             class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-            <div class="bg-white rounded-lg shadow-lg w-80 max-w-full p-6 space-y-3">
+            <div class="bg-white rounded-lg shadow-lg w-300 max-w-full p-6 space-y-3">
                 <h2 class="text-lg font-semibold text-gray-800">Opciones de usuario</h2>
 
 
@@ -102,8 +70,12 @@ $result = $conexion->query($sql);
 
 
 
-                <a href="añadirTokens.php?id=<?php echo $row['id']; ?>"
-                    class="block text-blue-600 hover:underline">Añadir tokens</a>
+                <a href="añadirTokens.php?id=
+                <?php echo $row['id']; ?>"
+                    class="block text-blue-600 hover:underline">Añadir tokens                
+                </a>
+                <input type="text" placeholder="Cantidad">
+
                 <a href="cambiarContrasena.php?id=<?php echo $row['id']; ?>"
                     class="block text-blue-600 hover:underline">Cambiar contraseña</a>
                 <a href="eliminarUsuario.php?id=<?php echo $row['id']; ?>"
@@ -115,7 +87,57 @@ $result = $conexion->query($sql);
             </div>
         </div>
 
+    </div> -->
+    <div id="menu-<?php echo $row['id']; ?>"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg w-300 max-w-full p-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Opciones de usuario</h2>
+
+        <table class="w-full table-auto border border-gray-300">
+            <tbody>
+                <tr>
+                    <td class="p-2 border-b">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full">
+                            Ver detalles
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-2 border-b">
+                        <a href="añadirTokens.php?id=<?php echo $row['id']; ?>"
+                            class="block text-blue-600 hover:underline w-full text-center">Añadir tokens</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-2 border-b">
+                        <input type="text" placeholder="Cantidad" class="w-full border border-gray-300 px-2 py-1 rounded" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-2 border-b">
+                        <a href="cambiarContrasena.php?id=<?php echo $row['id']; ?>"
+                            class="block text-blue-600 hover:underline w-full text-center">Cambiar contraseña</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-2 border-b">
+                        <a href="eliminarUsuario.php?id=<?php echo $row['id']; ?>"
+                            class="block text-red-600 hover:underline w-full text-center">Eliminar usuario</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-2">
+                        <button onclick="toggleMenu(<?php echo $row['id']; ?>)"
+                            class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded">
+                            Cerrar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+
 
     <?php include '../includes/footer.php'; ?>
     <?php $conexion->close(); ?>

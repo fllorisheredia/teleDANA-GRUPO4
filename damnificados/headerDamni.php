@@ -19,7 +19,7 @@ $result = $conexion->query($sql);
   <ul class="flex bg-gray-500 shadow-md rounded-lg p-4 space-x-4">
     <li>
       <a href="#" class="flex items-center space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2"
-        onclick="cargarPagina('/teleDANA3/index.php')">
+        onclick="cargarPagina('/teleDANA3/admin/indexAdmin.php')">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2
               m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1
@@ -41,9 +41,10 @@ $result = $conexion->query($sql);
     </li>
 
     <!-- Aquí el logo -->
-    <div class="w-1/3 flex justify-center">
-      <img src="/teleDANA3/imagenes/logo3.png" alt="Logo" class="h-12 w-auto">
-    </div>
+  <!-- Logo centrado -->
+  <li class="flex-grow text-center">
+    <img src="/teleDANA3/imagenes/logo3.png" alt="Logo" class="h-12 mx-auto">
+  </li>
 <!-- 
     <li>
       <a class="flex items-center space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2"
@@ -62,10 +63,10 @@ $result = $conexion->query($sql);
 
 <li>
 <div class="relative inline-block text-left">
-  <!-- Botón -->
+  <!-- class="font-mono font-semibold" -->
   <div>
     <button type="button" id="menu-button"
-      class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50"
+      class="flex items-center space-x-2 text-gray-700 hover:bg-blue-300 rounded-lg p-2 font-mono font-semibold"
       aria-expanded="false" aria-haspopup="true">
       <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Invitado'); ?>
 

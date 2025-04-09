@@ -1,14 +1,14 @@
 <?php
 include '../includes/db.php';
 
-$sql = "SELECT * FROM pedidos ORDER BY id DESC";
+$sql = "SELECT * FROM productos ORDER BY id DESC";
 $result = $conexion->query($sql);
 ?>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Lista de Pedidos</h1>
+    <h1 class="text-3xl font-bold mb-6">Lista de Productos</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <?php while ($row = $result->fetch_assoc()): ?>
@@ -19,38 +19,15 @@ $result = $conexion->query($sql);
                     <div class="flex gap-4 items-start">
                         <div class="flex-1">
                             <h3 class="text-base font-semibold text-gray-900 mb-1">
-                                ID:
-                                <?php echo htmlspecialchars($row['id']); ?>
+                                <?php echo htmlspecialchars($row['nombre']); ?>
                             </h3>
-                            <p class="text-sm text-gray-600 mb-2 ">
-                                Usuario:
-                              
-                                <?php echo htmlspecialchars($row['usuario_id']); ?>
-                                
-                            </p>
                             <p class="text-sm text-gray-600 mb-2">
-                                Estado Del Pedido:
-                                <?php echo htmlspecialchars($row['estado']);
-                                
-                                if($row['estado'] == 'pendiente') {
-                                    echo '<span class="text-yellow-500 font-bold"> (Pendiente)</span>';
-                                } elseif ($row['estado'] == 'completado') {
-                                    echo '<span class="text-green-500 font-bold"> (Completado)</span>';
-                                } elseif ($row['estado'] == 'enviado') {
-                                    echo '<span class="text-blue-500 font-bold"> (Enviado)</span>';
-                                }
-                                
-                                ?>
+                                <?php echo htmlspecialchars($row['descripcion']); ?>
                             </p>
-                            <p class="text-sm text-gray-600 mb-2">
-                                Precio Total del Pedido: 
-                                <?php echo htmlspecialchars($row['total_tonkens']);  ?>
-                                
-                            </p>
-                            <!-- <div class="flex justify-between text-xs text-gray-600">
+                            <div class="flex justify-between text-xs text-gray-600">
                                 <span>🆔 ID: <?php echo $row['id']; ?></span>
                                 <span>💰 <?php echo $row['precio_tonkens']; ?> Tokens</span>
-                            </div> -->
+                            </div>
                             <button onclick="toggleMenu(<?php echo $row['id']; ?>)"
                                 class="mt-2 text-blue-600 hover:underline focus:outline-none">
                                 Acciones
