@@ -5,7 +5,7 @@
 
 <div class="navbar bg-base-100 shadow-sm">
   <div class="flex-1">
-    <a href="indexDamni.php"class="btn btn-ghost text-xl">Reconstruim</a>
+    <a class="btn btn-ghost text-xl">daisyUI</a>
   </div>
   <div class="flex-none">
     <div class="dropdown dropdown-end">

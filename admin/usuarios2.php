@@ -33,8 +33,8 @@ $result = $conexion->query($sql);
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <?php while ($row = $result->fetch_assoc()) { ?>
-        <div class="bg-white rounded-lg shadow-lg p-4 relative">
-          <h2 class="text-lg font-bold text-gray-800 mb-2"><?php echo $row["nombre"]; ?> (ID: <?php echo $row["id"]; ?>)</h2>
+        <div class="bg-white rounded-lg shadow-lg p-4 relative flex flex-col space-y-2">
+          <h2 class="text-lg font-bold text-gray-800"><?php echo $row["nombre"]; ?> (ID: <?php echo $row["id"]; ?>)</h2>
           <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
           <p><strong>Contraseña:</strong> <?php echo $row["password"]; ?></p>
           <p><strong>Rol:</strong> <?php echo $row["rol"]; ?></p>
@@ -42,53 +42,39 @@ $result = $conexion->query($sql);
           <p><strong>Insignias:</strong> <?php echo $row["insignias"]; ?></p>
           <p><strong>Perfil Público:</strong> <?php echo $row["perfil_publico"]; ?></p>
           <p><strong>Valoración:</strong> <?php echo $row["valoracion"]; ?></p>
-          <button onclick="toggleMenu(<?php echo $row['id']; ?>)"
-            class="mt-4 w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition">⚙️ Acciones</button>
 
-          <!-- Menú flotante -->
-          <div id="menu-<?php echo $row['id']; ?>" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
-              <h2 class="text-xl font-bold text-gray-800 mb-4 text-center">⚙️ Opciones de usuario</h2>
-              <div class="space-y-3">
-                <a href="#"
-                  class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow hover:bg-blue-600 transition block text-center">Ver detalles</a>
-                <a href="/teleDANA3/admin/acciones/anadirTokens.php?id=<?php echo $row['id']; ?>"
-                  class="block text-blue-600 font-medium text-center hover:underline transition">➕ Añadir tokens</a>
-                <input type="number" placeholder="Cantidad"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
-                <a href="cambiarContrasena.php?id=<?php echo $row['id']; ?>"
-                  class="block text-blue-600 font-medium text-center hover:underline transition">🔑 Cambiar contraseña</a>
-                <a href="/admin/eliminarUsuario.php?id=<?php echo $row['id']; ?>"
-                  class="block text-red-600 font-semibold text-center hover:underline transition"
-                  onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?');">
-                  ❌ Eliminar usuario
-                </a>
-                <button onclick="toggleMenu(<?php echo $row['id']; ?>)"
-                  class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition">🔙
-                  Cerrar</button>
-              </div>
-            </div>
+          <div class="mt-9">
+            <h1 class="mt-9 text-2xl font-bold">Gestionar Tonkens</h1>
+
+            <form method="POST" action="anadirTonkens.php">
+              <input type="hidden" name="destinatario_id" value="3"> <!-- ID del destinatario -->
+              <textarea name="mensaje" placeholder="Ingrese La Cantidad..."></textarea>
+              <button type="submit">Enviar</button>
+            </form>
+
+
           </div>
         </div>
+
+
       <?php } ?>
     </div>
-  </div>
 
-  <?php $conexion->close(); ?>
+    <?php $conexion->close(); ?>
 
-  <script>
-    function toggleMenu(id) {
-      const menu = document.getElementById(`menu-${id}`);
-      menu.classList.toggle('hidden');
-    }
+    <script>
+      function toggleMenu(id) {
+        const menu = document.getElementById(`menu-${id}`);
+        menu.classList.toggle('hidden');
+      }
 
-    document.addEventListener("click", function (e) {
-      document.querySelectorAll("[id^='menu-']").forEach(menu => {
-        const content = menu.querySelector("div");
-        if (!content.contains(e.target) && !e.target.matches("button")) {
-          menu.classList.add("hidden");
-        }
+      document.addEventListener("click", function (e) {
+        document.querySelectorAll("[id^='menu-']").forEach(menu => {
+          const content = menu.querySelector("div");
+          if (!content.contains(e.target) && !e.target.matches("button")) {
+            menu.classList.add("hidden");
+          }
+        });
       });
-    });
-  </script>
+    </script>
 </body>
